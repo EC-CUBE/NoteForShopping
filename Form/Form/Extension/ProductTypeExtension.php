@@ -36,7 +36,8 @@ class ProductTypeExtension extends AbstractTypeExtension
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        if ($this->configRepository->get()->getSelectTargetProduct()) {
+        $Config = $this->configRepository->get();
+        if ($Config && $Config->getSelectTargetProduct()) {
             $builder->add('note_store_enable', ToggleSwitchType::class, [
                 'label' => 'note_for_shopping.product_note_store_link',
                 'eccube_form_options' => [
