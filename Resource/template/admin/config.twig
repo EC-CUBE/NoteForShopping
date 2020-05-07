@@ -1,0 +1,81 @@
+{% extends '@admin/default_frame.twig' %}
+
+{% set menus = ['store', 'plugin', 'plugin_list'] %}
+
+{% block title %}{{ 'note_for_shopping.config_title'|trans }}{% endblock %}
+{% block sub_title %}{{ 'admin.store.plugin.plugin_list'|trans }}{% endblock %}
+
+{% form_theme form '@admin/Form/bootstrap_4_horizontal_layout.html.twig' %}
+
+{% block stylesheet %}{% endblock stylesheet %}
+
+{% block javascript %}{% endblock javascript %}
+
+{% block main %}
+    <form role="form" method="post">
+
+        {{ form_widget(form._token) }}
+
+        <div class="c-contentsArea__cols">
+            <div class="c-contentsArea__primaryCol">
+                <div class="c-primaryCol">
+                    <div class="card rounded border-0 mb-4">
+                        <div class="card-header"><span>{{ 'note_for_shopping.config_card1_title'|trans }}</span></div>
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col-3" data-tooltip="true" data-placement="top" title=""
+                                     data-original-title="{{ 'note_for_shopping.config_rss_url_help'|trans }}">
+                                    <span>{{ 'note_for_shopping.config_rss_url_title'|trans }}</span><i
+                                        class="fa fa-question-circle fa-lg ml-1"></i>
+                                </div>
+                                <div class="col mb-2">
+                                    {{ url('note_for_shopping_rss') }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card rounded border-0 mb-4">
+                        <div class="card-header"><span>{{ 'note_for_shopping.config_card2_title'|trans }}</span></div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-3" data-tooltip="true" data-placement="top" title=""
+                                     data-original-title="{{ 'note_for_shopping.config_select_target_product_help'|trans }}">
+                                    <span>{{ 'note_for_shopping.config_select_target_product_title'|trans }}</span>
+                                    <i class="fa fa-question-circle fa-lg ml-1"></i>
+                                </div>
+                                <div class="col mb-2">
+                                    {{ form_widget(form.select_target_product) }}
+                                    {{ form_errors(form.select_target_product) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="c-conversionArea">
+            <div class="c-conversionArea__container">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-6">
+                        <div class="c-conversionArea__leftBlockItem">
+                            <a class="c-baseLink"
+                               href="{{ url('admin_store_plugin') }}">
+                                <i class="fa fa-backward" aria-hidden="true"></i>
+                                <span>{{ 'admin.store.plugin.plugin_list'|trans }}</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="row align-items-center justify-content-end">
+                            <div class="col-auto">
+                                <button class="btn btn-ec-conversion px-5"
+                                        type="submit">{{ 'admin.common.registration'|trans }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}

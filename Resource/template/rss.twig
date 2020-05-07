@@ -1,0 +1,21 @@
+<rss xmlns:note="https://note.mu" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
+    <channel>
+        <title>{{ BaseInfo.shop_name }}</title>
+        <link>{{ url('homepage') }}</link>
+        <description></description>
+        <language>{{ eccube_config.locale }}</language>
+        <copyright>{{ BaseInfo.company_name ? BaseInfo.company_name : BaseInfo.shop_name}}</copyright>
+        {% for Product in Products %}
+        <item>
+            <title>{{ Product.name }}</title>
+            <link>{{ url('product_detail', { 'id': Product.id }) }}</link>
+            <description><![CDATA[
+                {{ Product.description_detail }}
+                ]]></description>
+            <pubDate>{{ Product.update_date.format(constant('DATE_RFC822')) }}</pubDate>
+            <media:thumbnail url="{{ app.request.getSchemeAndHttpHost ~ asset(Product.main_list_image|no_image_product, 'save_image') }}" />
+            <note:price>{{ Product.getPrice02IncTaxMin|price }}({{ 'common.tax_include'|trans }})</note:price>
+        </item>
+        {% endfor %}
+    </channel>
+</rss>

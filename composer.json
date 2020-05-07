@@ -1,0 +1,12 @@
+{
+  "name": "ec-cube/NoteForShopping",
+  "version": "1.0.0",
+  "description": "note for shopping",
+  "type": "eccube-plugin",
+  "require": {
+    "ec-cube/plugin-installer": "~0.0.7"
+  },
+  "extra": {
+    "code": "NoteForShopping"
+  }
+}

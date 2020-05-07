@@ -1,0 +1,8 @@
+note_for_shopping.config_title: note連携プラグイン
+note_for_shopping.config_card1_title: 連携
+note_for_shopping.config_card2_title: 設定
+note_for_shopping.config_rss_url_title: 商品RSSのURL
+note_for_shopping.config_rss_url_help: noteのストア機能で連携するためのRSSのURLです。noteのマイページでURLを設定してください。
+note_for_shopping.config_select_target_product_title: 連携対象の商品を選択する
+note_for_shopping.config_select_target_product_help: ストア機能で連携する商品を明示的に選択したい場合、有効にしてください。有効にすると、商品登録画面で連携する商品を選択できるようになります。
+note_for_shopping.product_note_store_link: noteストア機能連携
