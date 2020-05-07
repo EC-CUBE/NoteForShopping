@@ -4,7 +4,7 @@
 
 RSSのURLをnoteに登録するだけで、EC-CUBEの商品をnoteの「ストア」タブで表示させることができます。
 
-![note store](https://user-images.githubusercontent.com/8196725/81265152-8aab1100-907d-11ea-8270-72a93db6aadf.png)
+![note store](https://user-images.githubusercontent.com/8196725/81265272-bfb76380-907d-11ea-975e-fffac9103e13.png)
 
 ## システム要件
 
