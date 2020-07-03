@@ -1,8 +1,16 @@
-note_for_shopping.config_title: note連携プラグイン
-note_for_shopping.config_card1_title: 連携
-note_for_shopping.config_card2_title: 設定
-note_for_shopping.config_rss_url_title: 商品RSSのURL
-note_for_shopping.config_rss_url_help: noteのストア機能で連携するためのRSSのURLです。noteのマイページでURLを設定してください。
-note_for_shopping.config_select_target_product_title: 連携対象の商品を選択する
-note_for_shopping.config_select_target_product_help: ストア機能で連携する商品を明示的に選択したい場合、有効にしてください。有効にすると、商品登録画面で連携する商品を選択できるようになります。
-note_for_shopping.product_note_store_link: noteストア機能連携
+note_for_shopping.config_title: 'note連携プラグイン'
+note_for_shopping.config_card1_title: '連携'
+note_for_shopping.config_card2_title: '設定'
+note_for_shopping.config_rss_url_title: '商品RSSのURL'
+note_for_shopping.config_rss_url_help: '商品RSSを出力するURLです。note連携を行うには、オーナーズストアで「noteストア機能連携サービス」にお申し込み頂く必要があります。'
+note_for_shopping.config_note_service: 'noteストア機能連携サービス'
+note_for_shopping.config_note_service_help: 'noteストア機能連携サービスお申し込みに必要な情報です。'
+note_for_shopping.config_note_service_info: '以下の情報を<a href="https://www.ec-cube.net/products/detail.php?product_id=2082" target="_blank">noteストア機能連携サービス</a>お申し込みの際にご提供ください。'
+note_for_shopping.config_note_service_shop_name: 'ショップ名：'
+note_for_shopping.config_note_service_shop_url: 'ショップURL：'
+note_for_shopping.config_note_service_rss_url: 'RSS URL：'
+note_for_shopping.config_target_product_help: '連携中の商品を表示します。連携するには、対象商品の商品編集画面から「noteストア機能連携」を有効にしてください。'
+note_for_shopping.config_target_product_list: '連携中の商品'
+note_for_shopping.config_target_product_not_found: '連携中の商品はありません。'
+note_for_shopping.config_target_product_not_found_message: '対象商品の商品編集画面から「noteストア機能連携」を有効にしてください。'
+note_for_shopping.product_note_store_link: 'noteストア機能連携'

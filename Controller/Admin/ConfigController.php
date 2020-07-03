@@ -14,9 +14,7 @@
 namespace Plugin\NoteForShopping\Controller\Admin;
 
 use Eccube\Controller\AbstractController;
-use Plugin\NoteForShopping\Entity\Config;
-use Plugin\NoteForShopping\Form\Type\Admin\ConfigType;
-use Plugin\NoteForShopping\Repository\ConfigRepository;
+use Eccube\Repository\ProductRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,16 +22,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class ConfigController extends AbstractController
 {
     /**
-     * @var ConfigRepository
+     * @var ProductRepository
      */
-    protected $configRepository;
+    protected $productRepository;
 
     /**
      * ConfigController constructor.
      */
-    public function __construct(ConfigRepository $configRepository)
+    public function __construct(ProductRepository $productRepository)
     {
-        $this->configRepository = $configRepository;
+        $this->productRepository = $productRepository;
     }
 
     /**
@@ -42,22 +40,8 @@ class ConfigController extends AbstractController
      */
     public function index(Request $request)
     {
-        $Config = $this->configRepository->get();
-        $form = $this->createForm(ConfigType::class, $Config);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $Config = $form->getData();
-            $Config->setId(Config::ID);
-            $this->entityManager->persist($Config);
-            $this->entityManager->flush();
-            $this->addSuccess('admin.common.save_complete', 'admin');
-
-            return $this->redirectToRoute('note_for_shopping_admin_config');
-        }
-
         return [
-            'form' => $form->createView(),
+            'Products' => $this->productRepository->findBy(['note_store_enable' => true]),
         ];
     }
 }

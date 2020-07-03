@@ -22,29 +22,16 @@ use Symfony\Component\Form\FormBuilderInterface;
 class ProductTypeExtension extends AbstractTypeExtension
 {
     /**
-     * @var ConfigRepository
-     */
-    protected $configRepository;
-
-    public function __construct(ConfigRepository $configRepository)
-    {
-        $this->configRepository = $configRepository;
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $Config = $this->configRepository->get();
-        if ($Config->getSelectTargetProduct()) {
-            $builder->add('note_store_enable', ToggleSwitchType::class, [
-                'label' => 'note_for_shopping.product_note_store_link',
-                'eccube_form_options' => [
-                    'auto_render' => true,
-                ],
-            ]);
-        }
+        $builder->add('note_store_enable', ToggleSwitchType::class, [
+            'label' => 'note_for_shopping.product_note_store_link',
+            'eccube_form_options' => [
+                'auto_render' => true,
+            ],
+        ]);
     }
 
     /**

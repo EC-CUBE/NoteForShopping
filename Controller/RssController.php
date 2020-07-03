@@ -34,21 +34,14 @@ class RssController extends AbstractController
     protected $baseInfoRepository;
 
     /**
-     * @var ConfigRepository
-     */
-    protected $configRepository;
-
-    /**
      * RssController constructor.
      */
     public function __construct(
         ProductRepository $productRepository,
-        BaseInfoRepository $baseInfoRepository,
-        ConfigRepository $configRepository
+        BaseInfoRepository $baseInfoRepository
     ) {
         $this->productRepository = $productRepository;
         $this->baseInfoRepository = $baseInfoRepository;
-        $this->configRepository = $configRepository;
     }
 
     /**
@@ -58,16 +51,13 @@ class RssController extends AbstractController
     public function index(Request $request)
     {
         $qb = $this->productRepository->getQueryBuilderBySearchData([]);
+        $qb->andWhere('p.note_store_enable = true');
 
         // 在庫なし商品の非表示
         if ($this->baseInfoRepository->get()->isOptionNostockHidden()) {
             $this->entityManager->getFilters()->enable('option_nostock_hidden');
-        }
-
-        // 連携商品の指定
-        $Config = $this->configRepository->get();
-        if ($Config->getSelectTargetProduct()) {
-            $qb->andWhere('p.note_store_enable = true');
+            $qb->innerJoin('p.ProductClasses', 'pc');
+            $qb->andWhere('pc.visible = true');
         }
 
         $Products = $qb->getQuery()->getResult();

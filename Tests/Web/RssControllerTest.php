@@ -16,9 +16,8 @@ namespace Plugin\NoteForShopping\Tests\Web;
 use Eccube\Entity\Master\ProductStatus;
 use Eccube\Entity\Product;
 use Eccube\Tests\Web\Admin\AbstractAdminWebTestCase;
-use Plugin\NoteForShopping\Entity\Config;
-use function simplexml_load_string;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use function simplexml_load_string;
 
 class RssControllerTest extends AbstractAdminWebTestCase
 {
@@ -29,34 +28,29 @@ class RssControllerTest extends AbstractAdminWebTestCase
         $this->hideAllProduct();
     }
 
+    /**
+     * 対象商品設定時のRSS出力の確認.
+     */
     public function testRss()
     {
-        $this->createConfig(false);
-        $Product = $this->createTestProduct(false);
+        $Product = $this->createTestProduct(true);
 
         $rss = $this->getRss();
-        self::assertSame('EC-CUBE SHOP', (string) $rss->channel->title);
-        self::assertSame('http://localhost/', (string) $rss->channel->link);
-        self::assertSame('', (string) $rss->channel->description);
-        self::assertSame($this->eccubeConfig->get('env(eccube_locale)'), (string) $rss->channel->language);
+        self::assertSame('EC-CUBE SHOP', (string)$rss->channel->title);
+        self::assertSame('http://localhost/', (string)$rss->channel->link);
+        self::assertSame('', (string)$rss->channel->description);
+        self::assertSame($this->eccubeConfig->get('locale'), (string)$rss->channel->language);
 
-        self::assertSame($Product->getName(), (string) $rss->channel->item[0]->title);
+        self::assertSame($Product->getName(), (string)$rss->channel->item[0]->title);
         self::assertSame($this->generateUrl('product_detail', ['id' => $Product->getId()],
-            UrlGeneratorInterface::ABSOLUTE_URL), (string) $rss->channel->item[0]->link);
+            UrlGeneratorInterface::ABSOLUTE_URL), (string)$rss->channel->item[0]->link);
     }
 
-    public function testRssWithSelectTargetProduct()
+    /**
+     * 対象商品未設定時のRSS出力の確認
+     */
+    public function testRssWithNoProduct()
     {
-        $this->createConfig(true);
-        $this->createTestProduct(true);
-
-        $rss = $this->getRss();
-        self::assertSame(1, $rss->channel->item->count());
-    }
-
-    public function testRssWithSelectTargetProductNoTargetProduct()
-    {
-        $this->createConfig(true);
         $this->createTestProduct(false);
 
         $rss = $this->getRss();
@@ -71,20 +65,6 @@ class RssControllerTest extends AbstractAdminWebTestCase
             ->set('p.Status', ProductStatus::DISPLAY_HIDE)
             ->getQuery()
             ->execute();
-    }
-
-    private function createConfig($selectTargetProduct = false)
-    {
-        /** @var Config $Config */
-        $Config = $this->entityManager->getRepository(Config::class)->get();
-        if (null === $Config) {
-            $Config = new Config();
-            $Config->setId(Config::ID);
-        }
-        $Config->setSelectTargetProduct($selectTargetProduct);
-
-        $this->entityManager->persist($Config);
-        $this->entityManager->flush();
     }
 
     private function createTestProduct($noteStoreEnable = false)
