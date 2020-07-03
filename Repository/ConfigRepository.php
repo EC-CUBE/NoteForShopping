@@ -40,6 +40,8 @@ class ConfigRepository extends AbstractRepository
      */
     public function get($id = Config::ID)
     {
-        return $this->find($id);
+        $Config = $this->find($id);
+
+        return $Config ? $Config : new Config();
     }
 }

@@ -66,7 +66,7 @@ class RssController extends AbstractController
 
         // 連携商品の指定
         $Config = $this->configRepository->get();
-        if ($Config && $Config->getSelectTargetProduct()) {
+        if ($Config->getSelectTargetProduct()) {
             $qb->andWhere('p.note_store_enable = true');
         }
 
