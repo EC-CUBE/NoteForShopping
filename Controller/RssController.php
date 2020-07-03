@@ -52,7 +52,7 @@ class RssController extends AbstractController
     }
 
     /**
-     * @Route("/note_for_shopping/rss", name="note_for_shopping_rss")
+     * @Route("/note_store/rss", name="note_for_shopping_rss")
      * @Template("@NoteForShopping/rss.twig")
      */
     public function index(Request $request)
