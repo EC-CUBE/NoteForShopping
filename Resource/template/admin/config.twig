@@ -70,10 +70,14 @@
                                 <div class="col mb-2">
                                     <p>{{ 'note_for_shopping.config_target_product_not_found'|trans }}</p>
                                     <p>{{ 'note_for_shopping.config_target_product_not_found_message'|trans }}</p>
-                                    <a href="{{ url("admin_product") }}">{{ 'admin.product.product_management'|trans }}＞{{ 'admin.product.product_list'|trans }}</a>
                                 </div>
                             </div>
                         {% endfor %}
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{ url("admin_product") }}">{{ 'note_for_shopping.link_admin_product_list'|trans({
+                                '%product_manage%': 'admin.product.product_management'|trans,
+                                '%product_list%': 'admin.product.product_list'|trans }) }}</a>
                     </div>
                 </div>
             </div>

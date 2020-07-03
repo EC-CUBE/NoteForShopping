@@ -13,4 +13,6 @@ note_for_shopping.config_target_product_help: '連携中の商品を表示しま
 note_for_shopping.config_target_product_list: '連携中の商品'
 note_for_shopping.config_target_product_not_found: '連携中の商品はありません。'
 note_for_shopping.config_target_product_not_found_message: '対象商品の商品編集画面から「noteストア機能連携」を有効にしてください。'
+note_for_shopping.link_admin_product_list: '%product_manage%＞%product_list%へ'
 note_for_shopping.product_note_store_link: 'noteストア機能連携'
+
