@@ -14,7 +14,16 @@
                 ]]></description>
             <pubDate>{{ Product.update_date.format(constant('DATE_RFC822')) }}</pubDate>
             <media:thumbnail url="{{ app.request.getSchemeAndHttpHost ~ asset(Product.main_list_image|no_image_product, 'save_image') }}" />
-            <note:price>{{ Product.getPrice02IncTaxMin|price }}({{ 'common.tax_include'|trans }})</note:price>
+            <note:price>
+                {%- if Product.hasProductClass -%}
+                    {%- if Product.getPrice02IncTaxMin == Product.getPrice02IncTaxMax -%}
+                        {{ Product.getPrice02IncTaxMin|price }}
+                    {%- else -%}
+                        {{ Product.getPrice02IncTaxMin|price }} ～ {{ Product.getPrice02IncTaxMax|price }}
+                    {%- endif -%}
+                {%- else -%}
+                    {{ Product.getPrice02IncTaxMin|price }}
+                {%- endif -%}({{ 'common.tax_include'|trans }})</note:price>
         </item>
         {% endfor %}
     </channel>
